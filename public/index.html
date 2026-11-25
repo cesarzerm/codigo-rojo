@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#05060f">
+<title>CÓDIGO ROJO: Sobrevive en la Red</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="bg"></div><div id="scan"></div>
+<div id="toast"></div>
+
+<section class="screen on" id="s-splash">
+  <div class="logo"><small>// SISTEMA INFECTADO //</small><h1 class="glitch" data-t="CÓDIGO ROJO">CÓDIGO ROJO</h1><h2>SOBREVIVE EN LA RED</h2></div>
+  <button class="btn big pulse" data-go="menu">▶ JUGAR</button>
+  <p class="hint">Cultura Digital · Arcade multijugador</p>
+</section>
+
+<section class="screen" id="s-menu">
+  <h2 class="title">MENÚ PRINCIPAL</h2>
+  <button class="btn" data-go="create">⚡ CREAR PARTIDA</button>
+  <button class="btn alt" data-go="join">🔑 UNIRSE CON CÓDIGO</button>
+  <button class="btn ghost" id="b-rank">🏆 CLASIFICACIÓN</button>
+  <button class="btn ghost" data-go="how">❓ CÓMO JUGAR</button>
+  <button class="btn ghost" data-go="splash">← INICIO</button>
+</section>
+
+<section class="screen" id="s-how">
+  <h2 class="title">CÓMO JUGAR</h2>
+  <div class="card txt">
+    <p>Eres un <b class="g">programa de seguridad</b>. Sobrevive 2 minutos en la red infectada.</p>
+    <p><b class="r">Evita</b> gusanos, troyanos y spyware. <b class="g">Recoge</b> antivirus (+10) y contraseñas seguras (+25).</p>
+    <p>⚠️ Cuidado con el <b class="y">PHISHING</b>: parece un premio, ¡pero te quita puntos y vida!</p>
+    <p><b>PC:</b> WASD / flechas · ESPACIO = Impulso · E / SHIFT = Escudo<br><b>Celular:</b> joystick a la izquierda, botones a la derecha.</p>
+    <p>Impulso y Escudo destruyen virus (+15). ¡Gana quien tenga más puntos!</p>
+  </div>
+  <button class="btn ghost" data-go="menu">← VOLVER</button>
+</section>
+
+<section class="screen" id="s-create">
+  <h2 class="title">CREAR PARTIDA</h2>
+  <div class="card"><label>Tu nombre</label><input id="n-create" maxlength="14" placeholder="Ej: Neo" autocomplete="off"></div>
+  <button class="btn" id="b-create">SIGUIENTE → PERSONAJE</button>
+  <button class="btn ghost" data-go="menu">← VOLVER</button>
+</section>
+
+<section class="screen" id="s-join">
+  <h2 class="title">UNIRSE A PARTIDA</h2>
+  <div class="card"><label>Código de sala</label><input id="c-join" maxlength="5" placeholder="ABCDE" autocomplete="off" autocapitalize="characters" class="code">
+  <label>Tu nombre</label><input id="n-join" maxlength="14" placeholder="Ej: Trinity" autocomplete="off"></div>
+  <button class="btn alt" id="b-join">SIGUIENTE → PERSONAJE</button>
+  <button class="btn ghost" data-go="menu">← VOLVER</button>
+</section>
+
+<section class="screen" id="s-chars">
+  <h2 class="title">ELIGE TU PROGRAMA</h2>
+  <div id="char-list"></div>
+  <button class="btn" id="b-confirm">✔ CONFIRMAR</button>
+  <button class="btn ghost" id="b-chars-back">← VOLVER</button>
+</section>
+
+<section class="screen" id="s-lobby">
+  <h2 class="title">SALA DE ESPERA</h2>
+  <div class="card center"><small>CÓDIGO DE SALA</small><div id="l-code" class="bigcode">-----</div>
+    <button class="btn mini" id="b-copy">📋 Copiar enlace</button></div>
+  <div class="card"><div class="row"><b>JUGADORES</b><span id="l-count"></span></div><ul id="l-list"></ul></div>
+  <p class="tip" id="l-tip"></p>
+  <button class="btn" id="b-start">▶ INICIAR PARTIDA</button>
+  <p class="hint" id="l-wait"></p>
+  <button class="btn mini" id="b-char2">🎭 Cambiar personaje</button>
+  <button class="btn ghost" id="b-leave">✖ SALIR</button>
+</section>
+
+<section class="screen" id="s-game">
+  <canvas id="cv"></canvas>
+  <div id="hud">
+    <div class="hudtop"><div id="h-time">2:00</div>
+      <div class="meter"><i id="h-hp"></i><span id="h-hpn">100</span></div>
+      <div id="h-score">0</div></div>
+    <div id="board"></div>
+    <div id="h-info"></div>
+  </div>
+  <div id="joyzone"><div id="joybase"><div id="joyknob"></div></div></div>
+  <div id="btns"><button id="k-shield" class="sk">🛡<small>ESCUDO</small><i></i></button><button id="k-dash" class="sk">⚡<small>IMPULSO</small><i></i></button></div>
+</section>
+
+<section class="screen" id="s-result">
+  <h1 id="r-title" class="glitch">VICTORIA</h1>
+  <p id="r-sub"></p>
+  <div class="bigcode" id="r-score">0</div><small>PUNTOS</small>
+  <button class="btn" data-go="stats">VER ESTADÍSTICAS →</button>
+</section>
+
+<section class="screen" id="s-stats">
+  <h2 class="title">ESTADÍSTICAS FINALES</h2>
+  <div class="card scroll"><table id="t-stats"></table></div>
+  <div class="card" id="quiz"></div>
+  <button class="btn" id="b-again">↻ JUGAR DE NUEVO</button>
+  <p class="hint" id="s-wait"></p>
+  <button class="btn ghost" id="b-rank2">🏆 CLASIFICACIÓN</button>
+  <button class="btn ghost" id="b-exit">✖ SALIR AL MENÚ</button>
+</section>
+
+<section class="screen" id="s-rank">
+  <h2 class="title">TOP 10 GLOBAL</h2>
+  <div class="card"><ol id="t-rank"></ol></div>
+  <button class="btn ghost" id="b-rank-back">← VOLVER</button>
+</section>
+
+<div id="rot">Gira tu celular en horizontal para jugar mejor ↻</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
+</body></html>
