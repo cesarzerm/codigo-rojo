@@ -1,0 +1,10 @@
+{
+  "name": "codigo-rojo",
+  "version": "1.0.0",
+  "description": "CÓDIGO ROJO: Sobrevive en la Red - arcade multijugador en tiempo real (Cultura Digital)",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "dev": "node server.js", "test": "node test/sim.test.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "socket.io": "^4.7.5" },
+  "license": "MIT"
+}
